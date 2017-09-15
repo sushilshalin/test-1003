@@ -322,14 +322,6 @@ paths:
           description: Client access denied
           schema:
             $ref: '#/definitions/errors'
-        '404':
-          description: Resource not found
-          schema:
-            $ref: '#/definitions/errors'
-        '406':
-          description: Mismatching data format
-          schema:
-            $ref: '#/definitions/errors'
         '409':
           description: Invalid data
           schema:
