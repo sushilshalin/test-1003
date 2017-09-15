@@ -351,7 +351,7 @@ paths:
           schema:
             $ref: '#/definitions/errors'
       summary: To change the password for the logged in user.
-  /api/v1/users/userName/credentials/forgot_password?sendEmail=true:
+  /api/v1/users/userName/credentials/forgot_password:
     post:
       tags:
         - forgotPassword
