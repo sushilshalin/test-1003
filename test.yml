@@ -325,7 +325,7 @@ paths:
               type: string
             Cache-Control:
               type: string
-            Content-Length:
+            Content-Length: 
               type: string
             Content-Type:
               type: string
