@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: userManagementService
   description: userManagementService
@@ -87,48 +87,26 @@ paths:
               type: string
         '304':
           description: Not Modified
-          schema:
-            $ref: '#/definitions/errors'
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/errors'
         '401':
           description: Client not authorized
-          schema:
-            $ref: '#/definitions/errors'
         '403':
           description: Client access denied
-          schema:
-            $ref: '#/definitions/errors'
         '404':
           description: Resource not found
-          schema:
-            $ref: '#/definitions/errors'
         '406':
           description: Mismatching data format
-          schema:
-            $ref: '#/definitions/errors'
         '409':
           description: Invalid data
-          schema:
-            $ref: '#/definitions/errors'
         '412':
           description: Stale data
-          schema:
-            $ref: '#/definitions/errors'
         '500':
           description: System Error
-          schema:
-            $ref: '#/definitions/errors'
         '502':
           description: Backend system problem
-          schema:
-            $ref: '#/definitions/errors'
         '503':
           description: Service unavailable
-          schema:
-            $ref: '#/definitions/errors'
       summary: Provides a method to update UserDetails
   /api/v1/users/userName:
     get:
@@ -168,8 +146,6 @@ paths:
       responses:
         '200':
           description: The user resource has been found.  Returning the user.
-          schema:
-            $ref: '#/definitions/getUserResponse'
           headers:
             Access-Control-Allow-Headers:
               type: string
@@ -193,48 +169,26 @@ paths:
               type: string
         '304':
           description: Not Modified
-          schema:
-            $ref: '#/definitions/errors'
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/errors'
         '401':
           description: Client not authorized
-          schema:
-            $ref: '#/definitions/errors'
         '403':
           description: Client access denied
-          schema:
-            $ref: '#/definitions/errors'
         '404':
           description: Resource not found
-          schema:
-            $ref: '#/definitions/errors'
         '406':
           description: Mismatching data format
-          schema:
-            $ref: '#/definitions/errors'
         '409':
           description: Invalid data
-          schema:
-            $ref: '#/definitions/errors'
         '412':
-          description: Stale data
-          schema:
-            $ref: '#/definitions/errors'
+          description: Stale data]
         '500':
           description: System Error
-          schema:
-            $ref: '#/definitions/errors'
         '502':
           description: Backend system problem
-          schema:
-            $ref: '#/definitions/errors'
         '503':
           description: Service unavailable
-          schema:
-            $ref: '#/definitions/errors'
       summary: Retrieve userIdentifier and other user details
   /api/v1/users/userName/credentials/change_password:
     post:
@@ -308,48 +262,16 @@ paths:
               type: string
         '304':
           description: Not Modified
-          schema:
-            $ref: '#/definitions/errors'
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/errors'
         '401':
           description: Client not authorized
-          schema:
-            $ref: '#/definitions/errors'
-        '403':
-          description: Client access denied
-          schema:
-            $ref: '#/definitions/errors'
-        '404':
-          description: Resource not found
-          schema:
-            $ref: '#/definitions/errors'
-        '406':
-          description: Mismatching data format
-          schema:
-            $ref: '#/definitions/errors'
-        '409':
-          description: Invalid data
-          schema:
-            $ref: '#/definitions/errors'
-        '412':
-          description: Stale data
-          schema:
-            $ref: '#/definitions/errors'
         '500':
           description: System Error
-          schema:
-            $ref: '#/definitions/errors'
         '502':
           description: Backend system problem
-          schema:
-            $ref: '#/definitions/errors'
         '503':
           description: Service unavailable
-          schema:
-            $ref: '#/definitions/errors'
       summary: To change the password for the logged in user.
   /api/v1/users/userName/credentials/forgot_password?sendEmail=true:
     post:
@@ -417,48 +339,26 @@ paths:
               type: string
         '304':
           description: Not Modified
-          schema:
-            $ref: '#/definitions/errors'
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/errors'
         '401':
           description: Client not authorized
-          schema:
-            $ref: '#/definitions/errors'
         '403':
           description: Client access denied
-          schema:
-            $ref: '#/definitions/errors'
         '404':
           description: Resource not found
-          schema:
-            $ref: '#/definitions/errors'
         '406':
           description: Mismatching data format
-          schema:
-            $ref: '#/definitions/errors'
         '409':
           description: Invalid data
-          schema:
-            $ref: '#/definitions/errors'
         '412':
           description: Stale data
-          schema:
-            $ref: '#/definitions/errors'
         '500':
           description: System Error
-          schema:
-            $ref: '#/definitions/errors'
         '502':
           description: Backend system problem
-          schema:
-            $ref: '#/definitions/errors'
         '503':
           description: Service unavailable
-          schema:
-            $ref: '#/definitions/errors'
       summary: To set new password if LEA User forgets the password
 definitions:
   changePasswordRequest:
@@ -471,11 +371,6 @@ definitions:
       newPassword:
         description: An User Defined Object
         type: string
-  errors:
-    description: a collection of errors
-    type: array
-    items:
-      $ref: '#/definitions/responseError'
   getUserResponse:
     type: object
     description: Obj
