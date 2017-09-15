@@ -20,10 +20,10 @@ paths:
       operationId: updateUser
       consumes:
         - application/json
-        - application/xml
+        - application/xm
       produces:
         - application/json
-        - application/xml
+        - application/xm
       parameters:
         - name: userIdentifier
           in: query
@@ -351,7 +351,7 @@ paths:
           schema:
             $ref: '#/definitions/errors'
       summary: To change the password for the logged in user.
-  /api/v1/users/userName/credentials/forgot_password:
+  /api/v1/users/userName/credentials/forgot_password?sendEmail=true:
     post:
       tags:
         - forgotPassword
