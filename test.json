@@ -1,790 +1,644 @@
---- 
-basePath: /
-definitions: 
-  changePasswordRequest: 
-    description: "An User Defined Object"
-    properties: 
-      newPassword: 
-        description: "An User Defined Object"
-        type: string
-      oldPassword: 
-        description: "An User Defined Object"
-        type: string
-    type: object
-  errors: 
-    description: "a collection of errors"
-    items: 
-      $ref: "#/definitions/responseError"
-    type: array
-  getUserResponse: 
-    description: Obj
-    properties: 
-      emailId: 
-        description: "An User Defined Object"
-        type: string
-      userIdentifier: 
-        description: "An User Defined Object"
-        type: string
-      userName: 
-        description: "An User Defined Object"
-        type: string
-    type: object
-  responseError: 
-    description: "Used to pass error information in a response."
-    properties: 
-      code: 
-        description: "Used to pass error codes"
-        type: string
-      systemMessage: 
-        description: "Used to pass system information."
-        type: string
-      userMessage: 
-        description: "Use to pass human friendly information to the user."
-        type: string
-    type: object
-  updateUserRequest: 
-    description: "An User Defined Object"
-    properties: 
-      agency: 
-        description: "An User Defined Object"
-        type: string
-      emailId: 
-        description: "An User Defined Object"
-        type: string
-      firstName: 
-        description: "An User Defined Object"
-        type: string
-      lastName: 
-        description: "An User Defined Object"
-        type: string
-      mobileNumber: 
-        description: "An User Defined Object"
-        type: string
-      userName: 
-        description: "An User Defined Object"
-        type: string
-    type: object
-host: dev.t-mobilapis.com
-info: 
-  description: userManagementService
+swagger: '2.0'
+info:
   title: userManagementService
-  version: "0.0.1"
-  x-createdBy: 
-    appVersion: "0.0.71.607"
-    application: Recite
+  description: userManagementService
+  version: 0.0.1
+  x-createdBy:
+    dateCreated: '09/13/17 18:44:02'
     createdBy: minnapu
-    dateCreated: "09/13/17 18:44:02"
-parameters: 
-  AcceptParam: 
-    in: header
-    name: Accept
-    required: false
-    type: string
-  Access-Control-Request-HeadersParam: 
-    in: header
-    name: Access-Control-Request-Headers
-    required: false
-    type: string
-  Access-Control-Request-MethodParam: 
-    in: header
-    name: Access-Control-Request-Method
-    required: false
-    type: string
-  AuthorizationParam: 
-    in: header
+    application: Recite
+    appVersion: 0.0.71.607
+host: dev.t-mobilapis.com
+basePath: /
+schemes:
+  - https
+paths:
+  /api/v1/users/userIdentifier:
+    post:
+      tags:
+        - updateUser
+      operationId: updateUser
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: userIdentifier
+          in: query
+          description: string
+          required: true
+          type: string
+        - name: updateUserRequest
+          in: body
+          description: Object
+          required: true
+          schema:
+            $ref: '#/definitions/updateUserRequest'
+        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: '#/parameters/Content-typeParam'
+        - $ref: '#/parameters/AcceptParam'
+        - $ref: '#/parameters/applicationuseridParam'
+        - $ref: '#/parameters/sessionidParam'
+        - $ref: '#/parameters/interactionidParam'
+        - $ref: '#/parameters/activityidParam'
+        - $ref: '#/parameters/workflowidParam'
+        - $ref: '#/parameters/timestampParam'
+        - $ref: '#/parameters/storeidParam'
+        - $ref: '#/parameters/terminalidParam'
+        - $ref: '#/parameters/tillidParam'
+        - $ref: '#/parameters/dealercodeParam'
+        - $ref: '#/parameters/segmentationidParam'
+        - $ref: '#/parameters/authcustomeridParam'
+        - $ref: '#/parameters/authfinancialaccountidParam'
+        - $ref: '#/parameters/authlineofserviceidParam'
+        - $ref: '#/parameters/Access-Control-Request-HeadersParam'
+        - $ref: '#/parameters/Access-Control-Request-MethodParam'
+        - $ref: '#/parameters/If-MatchParam'
+        - $ref: '#/parameters/If-Modified-SinceParam'
+        - $ref: '#/parameters/If-None-MatchParam'
+        - $ref: '#/parameters/OriginParam'
+      responses:
+        '200':
+          description: Ok
+          schema:
+            type: string
+          headers:
+            Access-Control-Allow-Headers:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Origin:
+              type: string
+            Cache-Control:
+              type: string
+            Content-Length:
+              type: string
+            Content-Type:
+              type: string
+            ETag:
+              type: string
+            Expires:
+              type: string
+            Location:
+              type: string
+            servicetransactionid:
+              type: string
+        '304':
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/errors'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors'
+        '401':
+          description: Client not authorized
+          schema:
+            $ref: '#/definitions/errors'
+        '403':
+          description: Client access denied
+          schema:
+            $ref: '#/definitions/errors'
+        '404':
+          description: Resource not found
+          schema:
+            $ref: '#/definitions/errors'
+        '406':
+          description: Mismatching data format
+          schema:
+            $ref: '#/definitions/errors'
+        '409':
+          description: Invalid data
+          schema:
+            $ref: '#/definitions/errors'
+        '412':
+          description: Stale data
+          schema:
+            $ref: '#/definitions/errors'
+        '500':
+          description: System Error
+          schema:
+            $ref: '#/definitions/errors'
+        '502':
+          description: Backend system problem
+          schema:
+            $ref: '#/definitions/errors'
+        '503':
+          description: Service unavailable
+          schema:
+            $ref: '#/definitions/errors'
+      summary: Provides a method to update UserDetails
+  /api/v1/users/userName:
+    get:
+      tags:
+        - getUser
+      operationId: getUser
+      consumes:
+        - application/json
+        - application/xm
+      produces:
+        - application/json
+        - application/xm
+      parameters:
+        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: '#/parameters/Content-typeParam'
+        - $ref: '#/parameters/AcceptParam'
+        - $ref: '#/parameters/applicationuseridParam'
+        - $ref: '#/parameters/sessionidParam'
+        - $ref: '#/parameters/interactionidParam'
+        - $ref: '#/parameters/activityidParam'
+        - $ref: '#/parameters/workflowidParam'
+        - $ref: '#/parameters/timestampParam'
+        - $ref: '#/parameters/storeidParam'
+        - $ref: '#/parameters/terminalidParam'
+        - $ref: '#/parameters/tillidParam'
+        - $ref: '#/parameters/dealercodeParam'
+        - $ref: '#/parameters/segmentationidParam'
+        - $ref: '#/parameters/authcustomeridParam'
+        - $ref: '#/parameters/authfinancialaccountidParam'
+        - $ref: '#/parameters/authlineofserviceidParam'
+        - $ref: '#/parameters/Access-Control-Request-HeadersParam'
+        - $ref: '#/parameters/Access-Control-Request-MethodParam'
+        - $ref: '#/parameters/If-MatchParam'
+        - $ref: '#/parameters/If-Modified-SinceParam'
+        - $ref: '#/parameters/If-None-MatchParam'
+        - $ref: '#/parameters/OriginParam'
+      responses:
+        '200':
+          description: The user resource has been found.  Returning the user.
+          schema:
+            $ref: '#/definitions/getUserResponse'
+          headers:
+            Access-Control-Allow-Headers:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Origin:
+              type: string
+            Cache-Control:
+              type: string
+            Content-Length:
+              type: string
+            Content-Type:
+              type: string
+            ETag:
+              type: string
+            Expires:
+              type: string
+            Location:
+              type: string
+            servicetransactionid:
+              type: string
+        '304':
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/errors'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors'
+        '401':
+          description: Client not authorized
+          schema:
+            $ref: '#/definitions/errors'
+        '403':
+          description: Client access denied
+          schema:
+            $ref: '#/definitions/errors'
+        '404':
+          description: Resource not found
+          schema:
+            $ref: '#/definitions/errors'
+        '406':
+          description: Mismatching data format
+          schema:
+            $ref: '#/definitions/errors'
+        '409':
+          description: Invalid data
+          schema:
+            $ref: '#/definitions/errors'
+        '412':
+          description: Stale data
+          schema:
+            $ref: '#/definitions/errors'
+        '500':
+          description: System Error
+          schema:
+            $ref: '#/definitions/errors'
+        '502':
+          description: Backend system problem
+          schema:
+            $ref: '#/definitions/errors'
+        '503':
+          description: Service unavailable
+          schema:
+            $ref: '#/definitions/errors'
+      summary: Retrieve userIdentifier and other user details
+  /api/v1/users/userName/credentials/change_password:
+    post:
+      tags:
+        - changePassword
+      operationId: changePassword
+      consumes:
+        - application/json
+        - application/xm
+      produces:
+        - application/json
+        - application/xm
+      parameters:
+        - name: userName
+          in: query
+          description: String
+          required: true
+          type: string
+        - name: changePasswordRequest
+          in: body
+          description: Object
+          required: true
+          schema:
+            $ref: '#/definitions/changePasswordRequest'
+        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: '#/parameters/Content-typeParam'
+        - $ref: '#/parameters/AcceptParam'
+        - $ref: '#/parameters/applicationuseridParam'
+        - $ref: '#/parameters/sessionidParam'
+        - $ref: '#/parameters/interactionidParam'
+        - $ref: '#/parameters/activityidParam'
+        - $ref: '#/parameters/workflowidParam'
+        - $ref: '#/parameters/timestampParam'
+        - $ref: '#/parameters/storeidParam'
+        - $ref: '#/parameters/terminalidParam'
+        - $ref: '#/parameters/tillidParam'
+        - $ref: '#/parameters/dealercodeParam'
+        - $ref: '#/parameters/segmentationidParam'
+        - $ref: '#/parameters/authcustomeridParam'
+        - $ref: '#/parameters/authfinancialaccountidParam'
+        - $ref: '#/parameters/authlineofserviceidParam'
+        - $ref: '#/parameters/Access-Control-Request-HeadersParam'
+        - $ref: '#/parameters/Access-Control-Request-MethodParam'
+        - $ref: '#/parameters/If-MatchParam'
+        - $ref: '#/parameters/If-Modified-SinceParam'
+        - $ref: '#/parameters/If-None-MatchParam'
+        - $ref: '#/parameters/OriginParam'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Headers:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Origin:
+              type: string
+            Cache-Control:
+              type: string
+            Content-Length:
+              type: string
+            Content-Type:
+              type: string
+            ETag:
+              type: string
+            Expires:
+              type: string
+            Location:
+              type: string
+            servicetransactionid:
+              type: string
+        '304':
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/errors'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors'
+        '401':
+          description: Client not authorized
+          schema:
+            $ref: '#/definitions/errors'
+        '403':
+          description: Client access denied
+          schema:
+            $ref: '#/definitions/errors'
+        '404':
+          description: Resource not found
+          schema:
+            $ref: '#/definitions/errors'
+        '406':
+          description: Mismatching data format
+          schema:
+            $ref: '#/definitions/errors'
+        '409':
+          description: Invalid data
+          schema:
+            $ref: '#/definitions/errors'
+        '412':
+          description: Stale data
+          schema:
+            $ref: '#/definitions/errors'
+        '500':
+          description: System Error
+          schema:
+            $ref: '#/definitions/errors'
+        '502':
+          description: Backend system problem
+          schema:
+            $ref: '#/definitions/errors'
+        '503':
+          description: Service unavailable
+          schema:
+            $ref: '#/definitions/errors'
+      summary: To change the password for the logged in user.
+  /api/v1/users/userName/credentials/forgot_password:
+    post:
+      tags:
+        - forgotPassword
+      operationId: forgotPassword
+      consumes:
+        - application/json
+        - application/xm
+      produces:
+        - application/json
+        - application/xm
+      parameters:
+        - name: userName
+          in: query
+          description: String
+          required: true
+          type: string
+        - $ref: '#/parameters/AuthorizationParam'
+        - $ref: '#/parameters/Content-typeParam'
+        - $ref: '#/parameters/AcceptParam'
+        - $ref: '#/parameters/applicationuseridParam'
+        - $ref: '#/parameters/sessionidParam'
+        - $ref: '#/parameters/interactionidParam'
+        - $ref: '#/parameters/activityidParam'
+        - $ref: '#/parameters/workflowidParam'
+        - $ref: '#/parameters/timestampParam'
+        - $ref: '#/parameters/storeidParam'
+        - $ref: '#/parameters/terminalidParam'
+        - $ref: '#/parameters/tillidParam'
+        - $ref: '#/parameters/dealercodeParam'
+        - $ref: '#/parameters/segmentationidParam'
+        - $ref: '#/parameters/authcustomeridParam'
+        - $ref: '#/parameters/authfinancialaccountidParam'
+        - $ref: '#/parameters/authlineofserviceidParam'
+        - $ref: '#/parameters/Access-Control-Request-HeadersParam'
+        - $ref: '#/parameters/Access-Control-Request-MethodParam'
+        - $ref: '#/parameters/If-MatchParam'
+        - $ref: '#/parameters/If-Modified-SinceParam'
+        - $ref: '#/parameters/If-None-MatchParam'
+        - $ref: '#/parameters/OriginParam'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Headers:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Origin:
+              type: string
+            Cache-Control:
+              type: string
+            Content-Length:
+              type: string
+            Content-Type:
+              type: string
+            ETag:
+              type: string
+            Expires:
+              type: string
+            Location:
+              type: string
+            servicetransactionid:
+              type: string
+        '304':
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/errors'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors'
+        '401':
+          description: Client not authorized
+          schema:
+            $ref: '#/definitions/errors'
+        '403':
+          description: Client access denied
+          schema:
+            $ref: '#/definitions/errors'
+        '404':
+          description: Resource not found
+          schema:
+            $ref: '#/definitions/errors'
+        '406':
+          description: Mismatching data format
+          schema:
+            $ref: '#/definitions/errors'
+        '409':
+          description: Invalid data
+          schema:
+            $ref: '#/definitions/errors'
+        '412':
+          description: Stale data
+          schema:
+            $ref: '#/definitions/errors'
+        '500':
+          description: System Error
+          schema:
+            $ref: '#/definitions/errors'
+        '502':
+          description: Backend system problem
+          schema:
+            $ref: '#/definitions/errors'
+        '503':
+          description: Service unavailable
+          schema:
+            $ref: '#/definitions/errors'
+      summary: To set new password if LEA User forgets the password
+definitions:
+  changePasswordRequest:
+    type: object
+    description: An User Defined Object
+    properties:
+      oldPassword:
+        description: An User Defined Object
+        type: string
+      newPassword:
+        description: An User Defined Object
+        type: string
+  errors:
+    description: a collection of errors
+    type: array
+    items:
+      $ref: '#/definitions/responseError'
+  getUserResponse:
+    type: object
+    description: Obj
+    properties:
+      userIdentifier:
+        description: An User Defined Object
+        type: string
+      userName:
+        description: An User Defined Object
+        type: string
+      emailId:
+        description: An User Defined Object
+        type: string
+  responseError:
+    description: Used to pass error information in a response.
+    type: object
+    properties:
+      code:
+        description: Used to pass error codes
+        type: string
+      userMessage:
+        description: Use to pass human friendly information to the user.
+        type: string
+      systemMessage:
+        description: Used to pass system information.
+        type: string
+  updateUserRequest:
+    type: object
+    description: An User Defined Object
+    properties:
+      userName:
+        description: An User Defined Object
+        type: string
+      firstName:
+        description: An User Defined Object
+        type: string
+      lastName:
+        description: An User Defined Object
+        type: string
+      mobileNumber:
+        description: An User Defined Object
+        type: string
+      emailId:
+        description: An User Defined Object
+        type: string
+      agency:
+        description: An User Defined Object
+        type: string
+parameters:
+  AuthorizationParam:
     name: Authorization
+    in: header
     required: true
     type: string
-  Content-typeParam: 
-    in: header
+  Content-typeParam:
     name: Content-type
+    in: header
     required: true
     type: string
-  If-MatchParam: 
+  AcceptParam:
+    name: Accept
     in: header
-    name: If-Match
     required: false
     type: string
-  If-Modified-SinceParam: 
-    in: header
-    name: If-Modified-Since
-    required: false
-    type: string
-  If-None-MatchParam: 
-    in: header
-    name: If-None-Match
-    required: false
-    type: string
-  OriginParam: 
-    in: header
-    name: Origin
-    required: false
-    type: string
-  activityidParam: 
-    in: header
-    name: activityid
-    required: true
-    type: string
-  applicationuseridParam: 
-    in: header
+  applicationuseridParam:
     name: applicationuserid
+    in: header
     required: false
     type: string
-  authcustomeridParam: 
+  sessionidParam:
+    name: sessionid
     in: header
-    name: authcustomerid
     required: false
     type: string
-  authfinancialaccountidParam: 
+  interactionidParam:
+    name: interactionid
     in: header
-    name: authfinancialaccountid
     required: false
     type: string
-  authlineofserviceidParam: 
+  activityidParam:
+    name: activityid
     in: header
-    name: authlineofserviceid
+    required: true
+    type: string
+  workflowidParam:
+    name: workflowid
+    in: header
     required: false
     type: string
-  dealercodeParam: 
-    format: int32
+  timestampParam:
+    name: timestamp
     in: header
+    required: false
+    type: string
+    format: date-time
+  storeidParam:
+    name: storeid
+    in: header
+    required: false
+    type: string
+  terminalidParam:
+    name: terminalid
+    in: header
+    required: false
+    type: string
+  tillidParam:
+    name: tillid
+    in: header
+    required: false
+    type: string
+  dealercodeParam:
     name: dealercode
+    in: header
     required: false
     type: integer
-  interactionidParam: 
-    in: header
-    name: interactionid
-    required: false
-    type: string
-  segmentationidParam: 
-    in: header
+    format: int32
+  segmentationidParam:
     name: segmentationid
-    required: false
-    type: string
-  sessionidParam: 
     in: header
-    name: sessionid
     required: false
     type: string
-  storeidParam: 
+  authcustomeridParam:
+    name: authcustomerid
     in: header
-    name: storeid
     required: false
     type: string
-  terminalidParam: 
+  authfinancialaccountidParam:
+    name: authfinancialaccountid
     in: header
-    name: terminalid
     required: false
     type: string
-  tillidParam: 
+  authlineofserviceidParam:
+    name: authlineofserviceid
     in: header
-    name: tillid
     required: false
     type: string
-  timestampParam: 
-    format: date-time
+  Access-Control-Request-HeadersParam:
+    name: Access-Control-Request-Headers
     in: header
-    name: timestamp
     required: false
     type: string
-  workflowidParam: 
+  Access-Control-Request-MethodParam:
+    name: Access-Control-Request-Method
     in: header
-    name: workflowid
     required: false
     type: string
-paths: 
-  /api/v1/users/userIdentifier: 
-    post: 
-      consumes: 
-        - application/json
-        - application/xm
-      operationId: updateUser
-      parameters: 
-        - 
-          description: string
-          in: query
-          name: userIdentifier
-          required: true
-          type: string
-        - 
-          description: Object
-          in: body
-          name: updateUserRequest
-          required: true
-          schema: 
-            $ref: "#/definitions/updateUserRequest"
-        - 
-          $ref: "#/parameters/AuthorizationParam"
-        - 
-          $ref: "#/parameters/Content-typeParam"
-        - 
-          $ref: "#/parameters/AcceptParam"
-        - 
-          $ref: "#/parameters/applicationuseridParam"
-        - 
-          $ref: "#/parameters/sessionidParam"
-        - 
-          $ref: "#/parameters/interactionidParam"
-        - 
-          $ref: "#/parameters/activityidParam"
-        - 
-          $ref: "#/parameters/workflowidParam"
-        - 
-          $ref: "#/parameters/timestampParam"
-        - 
-          $ref: "#/parameters/storeidParam"
-        - 
-          $ref: "#/parameters/terminalidParam"
-        - 
-          $ref: "#/parameters/tillidParam"
-        - 
-          $ref: "#/parameters/dealercodeParam"
-        - 
-          $ref: "#/parameters/segmentationidParam"
-        - 
-          $ref: "#/parameters/authcustomeridParam"
-        - 
-          $ref: "#/parameters/authfinancialaccountidParam"
-        - 
-          $ref: "#/parameters/authlineofserviceidParam"
-        - 
-          $ref: "#/parameters/Access-Control-Request-HeadersParam"
-        - 
-          $ref: "#/parameters/Access-Control-Request-MethodParam"
-        - 
-          $ref: "#/parameters/If-MatchParam"
-        - 
-          $ref: "#/parameters/If-Modified-SinceParam"
-        - 
-          $ref: "#/parameters/If-None-MatchParam"
-        - 
-          $ref: "#/parameters/OriginParam"
-      produces: 
-        - application/json
-        - application/xm
-      responses: 
-        ? "200"
-        : 
-          description: Ok
-          headers: 
-            Access-Control-Allow-Headers: 
-              type: string
-            Access-Control-Allow-Methods: 
-              type: string
-            Access-Control-Allow-Origin: 
-              type: string
-            Cache-Control: 
-              type: string
-            Content-Length: 
-              type: string
-            Content-Type: 
-              type: string
-            ETag: 
-              type: string
-            Expires: 
-              type: string
-            Location: 
-              type: string
-            servicetransactionid: 
-              type: string
-          schema: 
-            type: string
-        ? "304"
-        : 
-          description: "Not Modified"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "400"
-        : 
-          description: "Bad Request"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "401"
-        : 
-          description: "Client not authorized"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "403"
-        : 
-          description: "Client access denied"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "404"
-        : 
-          description: "Resource not found"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "406"
-        : 
-          description: "Mismatching data format"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "409"
-        : 
-          description: "Invalid data"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "412"
-        : 
-          description: "Stale data"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "500"
-        : 
-          description: "System Error"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "502"
-        : 
-          description: "Backend system problem"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "503"
-        : 
-          description: "Service unavailable"
-          schema: 
-            $ref: "#/definitions/errors"
-      summary: "Provides a method to update UserDetails"
-      tags: 
-        - updateUser
-  /api/v1/users/userName: 
-    get: 
-      consumes: 
-        - application/json
-        - application/xm
-      operationId: getUser
-      parameters: 
-        - 
-          $ref: "#/parameters/AuthorizationParam"
-        - 
-          $ref: "#/parameters/Content-typeParam"
-        - 
-          $ref: "#/parameters/AcceptParam"
-        - 
-          $ref: "#/parameters/applicationuseridParam"
-        - 
-          $ref: "#/parameters/sessionidParam"
-        - 
-          $ref: "#/parameters/interactionidParam"
-        - 
-          $ref: "#/parameters/activityidParam"
-        - 
-          $ref: "#/parameters/workflowidParam"
-        - 
-          $ref: "#/parameters/timestampParam"
-        - 
-          $ref: "#/parameters/storeidParam"
-        - 
-          $ref: "#/parameters/terminalidParam"
-        - 
-          $ref: "#/parameters/tillidParam"
-        - 
-          $ref: "#/parameters/dealercodeParam"
-        - 
-          $ref: "#/parameters/segmentationidParam"
-        - 
-          $ref: "#/parameters/authcustomeridParam"
-        - 
-          $ref: "#/parameters/authfinancialaccountidParam"
-        - 
-          $ref: "#/parameters/authlineofserviceidParam"
-        - 
-          $ref: "#/parameters/Access-Control-Request-HeadersParam"
-        - 
-          $ref: "#/parameters/Access-Control-Request-MethodParam"
-        - 
-          $ref: "#/parameters/If-MatchParam"
-        - 
-          $ref: "#/parameters/If-Modified-SinceParam"
-        - 
-          $ref: "#/parameters/If-None-MatchParam"
-        - 
-          $ref: "#/parameters/OriginParam"
-      produces: 
-        - application/json
-        - application/xm
-      responses: 
-        ? "200"
-        : 
-          description: "The user resource has been found.  Returning the user."
-          headers: 
-            Access-Control-Allow-Headers: 
-              type: string
-            Access-Control-Allow-Methods: 
-              type: string
-            Access-Control-Allow-Origin: 
-              type: string
-            Cache-Control: 
-              type: string
-            Content-Length: 
-              type: string
-            Content-Type: 
-              type: string
-            ETag: 
-              type: string
-            Expires: 
-              type: string
-            Location: 
-              type: string
-            servicetransactionid: 
-              type: string
-          schema: 
-            $ref: "#/definitions/getUserResponse"
-        ? "304"
-        : 
-          description: "Not Modified"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "400"
-        : 
-          description: "Bad Request"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "401"
-        : 
-          description: "Client not authorized"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "403"
-        : 
-          description: "Client access denied"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "404"
-        : 
-          description: "Resource not found"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "406"
-        : 
-          description: "Mismatching data format"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "409"
-        : 
-          description: "Invalid data"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "412"
-        : 
-          description: "Stale data"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "500"
-        : 
-          description: "System Error"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "502"
-        : 
-          description: "Backend system problem"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "503"
-        : 
-          description: "Service unavailable"
-          schema: 
-            $ref: "#/definitions/errors"
-      summary: "Retrieve userIdentifier and other user details"
-      tags: 
-        - getUser
-  /api/v1/users/userName/credentials/change_password: 
-    post: 
-      consumes: 
-        - application/json
-        - application/xm
-      operationId: changePassword
-      parameters: 
-        - 
-          description: String
-          in: query
-          name: userName
-          required: true
-          type: string
-        - 
-          description: Object
-          in: body
-          name: changePasswordRequest
-          required: true
-          schema: 
-            $ref: "#/definitions/changePasswordRequest"
-        - 
-          $ref: "#/parameters/AuthorizationParam"
-        - 
-          $ref: "#/parameters/Content-typeParam"
-        - 
-          $ref: "#/parameters/AcceptParam"
-        - 
-          $ref: "#/parameters/applicationuseridParam"
-        - 
-          $ref: "#/parameters/sessionidParam"
-        - 
-          $ref: "#/parameters/interactionidParam"
-        - 
-          $ref: "#/parameters/activityidParam"
-        - 
-          $ref: "#/parameters/workflowidParam"
-        - 
-          $ref: "#/parameters/timestampParam"
-        - 
-          $ref: "#/parameters/storeidParam"
-        - 
-          $ref: "#/parameters/terminalidParam"
-        - 
-          $ref: "#/parameters/tillidParam"
-        - 
-          $ref: "#/parameters/dealercodeParam"
-        - 
-          $ref: "#/parameters/segmentationidParam"
-        - 
-          $ref: "#/parameters/authcustomeridParam"
-        - 
-          $ref: "#/parameters/authfinancialaccountidParam"
-        - 
-          $ref: "#/parameters/authlineofserviceidParam"
-        - 
-          $ref: "#/parameters/Access-Control-Request-HeadersParam"
-        - 
-          $ref: "#/parameters/Access-Control-Request-MethodParam"
-        - 
-          $ref: "#/parameters/If-MatchParam"
-        - 
-          $ref: "#/parameters/If-Modified-SinceParam"
-        - 
-          $ref: "#/parameters/If-None-MatchParam"
-        - 
-          $ref: "#/parameters/OriginParam"
-      produces: 
-        - application/json
-        - application/xm
-      responses: 
-        ? "200"
-        : 
-          description: OK
-          headers: 
-            Access-Control-Allow-Headers: 
-              type: string
-            Access-Control-Allow-Methods: 
-              type: string
-            Access-Control-Allow-Origin: 
-              type: string
-            Cache-Control: 
-              type: string
-            Content-Length: 
-              type: string
-            Content-Type: 
-              type: string
-            ETag: 
-              type: string
-            Expires: 
-              type: string
-            Location: 
-              type: string
-            servicetransactionid: 
-              type: string
-        ? "304"
-        : 
-          description: "Not Modified"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "400"
-        : 
-          description: "Bad Request"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "401"
-        : 
-          description: "Client not authorized"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "403"
-        : 
-          description: "Client access denied"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "404"
-        : 
-          description: "Resource not found"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "406"
-        : 
-          description: "Mismatching data format"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "409"
-        : 
-          description: "Invalid data"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "412"
-        : 
-          description: "Stale data"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "500"
-        : 
-          description: "System Error"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "502"
-        : 
-          description: "Backend system problem"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "503"
-        : 
-          description: "Service unavailable"
-          schema: 
-            $ref: "#/definitions/errors"
-      summary: "To change the password for the logged in user."
-      tags: 
-        - changePassword
-  /api/v1/users/userName/credentials/forgot_password: 
-    post: 
-      consumes: 
-        - application/json
-        - application/xm
-      operationId: forgotPassword
-      parameters: 
-        - 
-          description: String
-          in: query
-          name: userName
-          required: true
-          type: string
-        - 
-          $ref: "#/parameters/AuthorizationParam"
-        - 
-          $ref: "#/parameters/Content-typeParam"
-        - 
-          $ref: "#/parameters/AcceptParam"
-        - 
-          $ref: "#/parameters/applicationuseridParam"
-        - 
-          $ref: "#/parameters/sessionidParam"
-        - 
-          $ref: "#/parameters/interactionidParam"
-        - 
-          $ref: "#/parameters/activityidParam"
-        - 
-          $ref: "#/parameters/workflowidParam"
-        - 
-          $ref: "#/parameters/timestampParam"
-        - 
-          $ref: "#/parameters/storeidParam"
-        - 
-          $ref: "#/parameters/terminalidParam"
-        - 
-          $ref: "#/parameters/tillidParam"
-        - 
-          $ref: "#/parameters/dealercodeParam"
-        - 
-          $ref: "#/parameters/segmentationidParam"
-        - 
-          $ref: "#/parameters/authcustomeridParam"
-        - 
-          $ref: "#/parameters/authfinancialaccountidParam"
-        - 
-          $ref: "#/parameters/authlineofserviceidParam"
-        - 
-          $ref: "#/parameters/Access-Control-Request-HeadersParam"
-        - 
-          $ref: "#/parameters/Access-Control-Request-MethodParam"
-        - 
-          $ref: "#/parameters/If-MatchParam"
-        - 
-          $ref: "#/parameters/If-Modified-SinceParam"
-        - 
-          $ref: "#/parameters/If-None-MatchParam"
-        - 
-          $ref: "#/parameters/OriginParam"
-      produces: 
-        - application/json
-        - application/xm
-      responses: 
-        ? "200"
-        : 
-          description: OK
-          headers: 
-            Access-Control-Allow-Headers: 
-              type: string
-            Access-Control-Allow-Methods: 
-              type: string
-            Access-Control-Allow-Origin: 
-              type: string
-            Cache-Control: 
-              type: string
-            Content-Length: 
-              type: string
-            Content-Type: 
-              type: string
-            ETag: 
-              type: string
-            Expires: 
-              type: string
-            Location: 
-              type: string
-            servicetransactionid: 
-              type: string
-        ? "304"
-        : 
-          description: "Not Modified"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "400"
-        : 
-          description: "Bad Request"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "401"
-        : 
-          description: "Client not authorized"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "403"
-        : 
-          description: "Client access denied"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "404"
-        : 
-          description: "Resource not found"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "406"
-        : 
-          description: "Mismatching data format"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "409"
-        : 
-          description: "Invalid data"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "412"
-        : 
-          description: "Stale data"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "500"
-        : 
-          description: "System Error"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "502"
-        : 
-          description: "Backend system problem"
-          schema: 
-            $ref: "#/definitions/errors"
-        ? "503"
-        : 
-          description: "Service unavailable"
-          schema: 
-            $ref: "#/definitions/errors"
-      summary: "To set new password if LEA User forgets the password"
-      tags: 
-        - forgotPassword
-schemes: 
-  - https
-swagger: "2.0"
+  If-MatchParam:
+    name: If-Match
+    in: header
+    required: false
+    type: string
+  If-Modified-SinceParam:
+    name: If-Modified-Since
+    in: header
+    required: false
+    type: string
+  If-None-MatchParam:
+    name: If-None-Match
+    in: header
+    required: false
+    type: string
+  OriginParam:
+    name: Origin
+    in: header
+    required: false
+    type: string
